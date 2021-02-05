@@ -12,6 +12,7 @@ aiohttp = "^3.7.3"
 aiodns = "^2.0.0"
 uvicorn = {extras = ["standard"], version = "^0.13.3"}
 Django = "^3.1.6"
+black = "^20.8b1"
 
 [tool.poetry.dev-dependencies]
 
