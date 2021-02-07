@@ -8,11 +8,13 @@ User = get_user_model()
 
 class LeadModelForm(forms.ModelForm):
     class Meta:
+
         model = Lead
         fields = (
             'first_name',
             'last_name',
             'age',
+            'organisation',
             'agent',
         )
 
