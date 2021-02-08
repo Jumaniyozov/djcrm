@@ -139,3 +139,4 @@ cython_debug/
 /.vscode
 /__pycache__
 /.idea
+djcrm/djcrm/.env

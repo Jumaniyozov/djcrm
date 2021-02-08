@@ -23,6 +23,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	"whitenoise.runserver_nostatic",
 	"django.contrib.admin",
 	"django.contrib.auth",
 	"django.contrib.contenttypes",
@@ -57,6 +58,7 @@ TEMPLATES = [
 		"APP_DIRS": True,
 		"OPTIONS": {
 			"context_processors": [
+				"whitenoise.middleware.WhiteNoiseMiddleware",
 				"django.template.context_processors.debug",
 				"django.template.context_processors.request",
 				"django.contrib.auth.context_processors.auth",
@@ -119,6 +121,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = "static_root"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 AUTH_USER_MODEL = "leads.User"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
