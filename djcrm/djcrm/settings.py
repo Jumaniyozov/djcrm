@@ -1,16 +1,22 @@
 from pathlib import Path
+import environ
+
+env = environ.Env(
+	DEBUG=(bool, False)
+)
+
+
+# Set it to true in local development ~user$ export READ_DOT_ENV_FILE=True
+READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
+if READ_DOT_ENV_FILE:
+	environ.Env.read_env()
+
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "bv=8l^0)z7ppn)nbutt+28x-tq=e21)q*1d#n@%mqnzrz(o+hr"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -67,8 +73,12 @@ WSGI_APPLICATION = "djcrm.wsgi.application"
 
 DATABASES = {
 	"default": {
-		"ENGINE": "django.db.backends.sqlite3",
-		"NAME": BASE_DIR / "db.sqlite3",
+		"ENGINE": "django.db.backends.postgresql_psycopg2",
+		"NAME": env("DB_NAME"),
+		"HOST": env("DB_HOST"),
+		"PORT": env("DB_PORT"),
+		"USER": env("DB_USER"),
+		"PASSWORD": env("DB_PASSWORD"),
 	}
 }
 
