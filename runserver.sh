@@ -2,5 +2,5 @@ python manage.py collectstatic --no-input
 
 python manage.py migrate
 
-gunicorn --worker-mp-dir /dev/shm djcrm.wsgi
+gunicorn -b 0.0.0.0:8080 wsgi
 
